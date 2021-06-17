@@ -1,0 +1,17 @@
+Recursive Solution
+First define a getDepth dfs helper to quickly get the level of depth of the node.
+Then to check if the following three conditions are all satisfied:
+check if the root itself is height-balanced (by checking if the absolute difference of the levels of depth between root's left child and right child is less than 1)
+check if the root's left child is height-balanced (by recursion)
+check if the root's right child is height-balanced (by recursion)
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        def getDepth(node):
+            if not node:
+                return 0
+            return 1 + max(getDepth(node.left), getDepth(node.right))
+        
+        if not root:
+            return True
+        return abs(getDepth(root.left) - getDepth(root.right)) < =1 and \
+                self.isBalanced(root.left) and self.isBalanced(root.right)

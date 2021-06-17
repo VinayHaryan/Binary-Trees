@@ -1,0 +1,8 @@
+    def recursive(self, root):
+        def rec(root):
+            if root:
+                root.left, root.right = root.right, root.left
+                rec(root.left)
+                rec(root.right)
+        rec(root)
+        return root

@@ -1,0 +1,25 @@
+class Solution:
+    def findMode(self, root: TreeNode) -> List[int]:
+        if root == None:
+            return []
+        resultList = []
+        dictionary = {}
+        def dfs(root):
+            if root == None:
+                return None
+            if (root.val in dictionary):
+                dictionary[root.val] += 1
+            else:
+                dictionary[root.val] = 1
+            dfs(root.left)
+            dfs(root.right)
+        dfs(root)
+        maximum = 0
+        for k, v in dictionary.items():
+            if (dictionary[k] > maximum):
+                maximum = v
+        
+        for k, v in dictionary.items():
+            if v == maximum:
+                resultList.append(k)
+        return resultList

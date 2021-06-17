@@ -1,0 +1,15 @@
+This problem is very similar to the tree traversal problems, actually to me, they are the same, we just return the leaf node if node.left == None and node.right == None. Otherwise, we recursively find the left leaves and right leaves.
+
+class Solution(object):
+    def leafSimilar(self, root1, root2):
+        """
+        :type root1: TreeNode
+        :type root2: TreeNode
+        :rtype: bool
+        """
+        return self.findleaf(root1) == self.findleaf(root2)
+        
+    def findleaf(self, root):
+        if not root: return []
+        if not (root.left or root.right): return [root.val]
+        return self.findleaf(root.left) + self.findleaf(root.right)

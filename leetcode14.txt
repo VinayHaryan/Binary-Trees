@@ -1,0 +1,12 @@
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        def bst(x):
+            if len(x) <= 0:
+                return
+            mid = len(x)//2
+            node = TreeNode(x[mid])
+            node.left = bst(x[:mid])
+            node.right = bst(x[mid+1:])
+            return node
+        node = bst(nums)
+        return node
